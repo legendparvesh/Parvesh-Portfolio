@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background: linear-gradient(90deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #2a5298;
+            padding: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffde59;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2a5298;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .project {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .project img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        footer {
+            background: linear-gradient(90deg, #2a5298, #1e3c72);
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form input, .contact-form textarea, .contact-form button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .contact-form button {
+            background-color: #2a5298;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .contact-form button:hover {
+            background-color: #ffde59;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Parvesh R</h1>
+        <p>Final year ECE Student | Embedded Systems Engineer | Innovator</p>
+    </header>
+
+    <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Welcome to my portfolio! I passionate in Embedded Systems, Robotics, and Automotive Electronics. I like transforming innovative ideas into functional products.</p><br>
+        
+    </section>
+
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="projects" style="height: fit-content;">
+            <div class="project">
+                <img src="project-1-pcb.png" alt="Project 1" style="max-height: 300px;max-width: 300px; ">
+                <img src="project-1-prototype.png" alt="Project 1" style="max-height: 210px;max-width: 300px; "><br>
+                <h3>Emergency communication system for fishermen using loramesh technology</h3>
+                <p>Using STM32-based microcontrollers and LoRa module to establish a mesh network for long-range, low-power
+                    communication. Incorporate GPS for navigation assistance and real-time weather alerts, Developing a PCB to improve the compactness and reliability in hard weather conditions</p><br>
+                <p>Projects involed developing new and modifying existing libraries to interface with lora, lcd and user interface </p>
+            </div>
+            <div class="project">
+                <img src="project-2-pcb.png" alt="Project 2" style="max-height: 200px;max-width: 300px; ">
+                <img src="project-2-prototype.png" alt="Project 2" style="max-height: 200px;max-width: 300px; "><br>
+                <img src="project-2-pcb-routing.png" alt="project 2" style="max-height: 300px; max-width: 300px;">
+                <h3>PCB for SIH 2024</h3>
+                <p>developed a PCB for Smart India Hackathon 2024, it is a 2 layer PCB, this pcb was used a plug in device to monitor scientific project exhibits </p>
+            </div>
+            <div class="project">
+                <img src="project-3-pcb.png" alt="Project 2" style="max-height: 200px;max-width: 300px; ">
+                <img src="project-3-prototype.png" alt="Project 2" style="max-height: 200px;max-width: 300px; "><br>
+                <h3>Revolutionizing Fleet Management Using Customized Telematic Control Unit</h3>
+                <p>This proDeveloped advanced TCU and VIM to capture vehicle data without factory telemetry ports Using various sensors to collect extensive vehicle metrics such as engine performance, payload, fuel efficiency, location, and diagnostics. Developed an intuitive dashboard for real-time monitoring, AI-driven insights, and detailed reporting.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume">
+        <h2>Resume</h2>
+        <p><a href="Parvesh_s_Resume.pdf" target="_blank">Download my resume</a></p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <form class="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Parvesh R's Portfolio</p>
+    </footer>
+</body>
+</html>

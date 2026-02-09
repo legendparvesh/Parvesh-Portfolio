@@ -1,183 +1,280 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background: #f4f4f4;
-            color: #333;
-        }
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Parvesh R's Portfolio</title>
 
-        header {
-            background: linear-gradient(90deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet">
 
-        nav {
-            display: flex;
-            justify-content: center;
-            background: #2a5298;
-            padding: 10px;
-        }
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-            transition: color 0.3s;
-        }
-
-        nav a:hover {
-            color: #ffde59;
-        }
-
-        section {
-            padding: 20px;
-        }
-
-        h2 {
-            text-align: center;
-            color: #2a5298;
-        }
-
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project {
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 15px;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .project:hover {
-            transform: scale(1.05);
-            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-        }
-
-        .project img {
-            width: 100%;
-            border-radius: 8px;
-        }
-
-        footer {
-            background: linear-gradient(90deg, #2a5298, #1e3c72);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-
-        .contact-form {
-            max-width: 500px;
-            margin: 0 auto;
-            padding: 20px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-form input, .contact-form textarea, .contact-form button {
-            width: 100%;
-            margin: 10px 0;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .contact-form button {
-            background-color: #2a5298;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .contact-form button:hover {
-            background-color: #ffde59;
-        }
-    </style>
-</head>
-<body>
     <header>
-        <h1>Parvesh R</h1>
-        <p>Final year ECE Student | Embedded Systems Engineer | Innovator</p>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="#">Portfolio</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#experience">Experience</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
     </header>
 
-    <nav>
-        <a href="#about">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-    </nav>
+    <main role="main">
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome to my portfolio! I passionate in Embedded Systems, Robotics, and Automotive Electronics. I like transforming innovative ideas into functional products.</p><br>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active" style="height: 70vh; background-color: #000;">
+            <img class="first-slide"
+     src="e-background.png"
+     alt="First slide"
+     style="
+       width: 100vw;
+       height: 100%;
+       object-fit: cover;
+       object-position: center;
+       display: block;
+       margin: 0 auto;
+     ">
+
+
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>Parvesh R</h1>
+                <p>M.Sc. Microelectronics & Microsystems @ TUHH | Embedded Systems | IoT | PCB Design</p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img class="second-slide" src="home-4.png" alt="Second slide" style="max-width: 100%; height: auto; display: block;">
+            <div class="container">
+              <div class="carousel-caption">
+                <h1>About Me</h1>
+                <p style="text-align: justify;">
+I am a Master’s student in Microelectronics and Microsystems at the Technical University of Hamburg (TUHH) with a strong focus on embedded systems, IoT, and hardware development. I have hands-on experience in designing embedded devices, developing low-power communication systems, and creating reliable PCB designs for real-world applications.
+<br><br>
+My interests lie in research-oriented hardware development, sensor systems, and embedded product design. I enjoy working at the intersection of hardware and software and aim to contribute to technologies with measurable environmental and societal impact.
+</p>
+
+                <p><a class="btn btn-lg btn-primary" href="https://www.linkedin.com/in/parveshr/" role="button">Learn more</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <!-- <img class="third-slide" src="home-5.png" alt="Third slide"> -->
+            <div class="container">
+              <div class="carousel-caption text-left">
+                <h1>Skills</h1>
+                <ul>
+                  <li>Embedded C / C++</li>
+                  <li>STM32, Arduino</li>
+                  <li>PCB Design (Altium Designer, KiCad)</li>
+                  <li>LoRaWAN, UART, I2C, SPI</li>
+                  <li>Sensor Integration & Low-Power Systems</li>
+                  <li>Python (Flask, APIs)</li>
+                  <li>Tools: STM32CubeIDE, VS Code, Git</li>
+                </ul>
+
+                <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+
+
+      <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+        <h2 id="experience" style="text-align: center; margin-top: 40px; color: #000;">Experience</h2>
+        <p></p>
         
-    </section>
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4 text-center">
+            <img class="rounded-circle"
+     src="https://img1.wsimg.com/isteam/ip/1de1d811-f2e9-4acf-af7b-3eb516c48e79/Terul%20Branding_V5-14-WordMark.png/:/rs=w:197,h:58,cg:true,m/cr=w:197,h:58/qt=q:95"
+     alt="Terul Logo" width="140" height="140" style="object-fit: contain; padding: 20px; background-color: #ffffff;">
+            <h2>Terul Electronics</h2>
+            <p>
+            Intern – Hardware Development<br>
+            • Developed and maintained master component libraries in Altium Designer<br>
+            • Supported schematic design and PCB development<br>
+            • Worked on Flyback controller design for SMPS applications
+            </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4 text-center">
+            <img class="rounded-circle" src="pcblogo.webp" alt="Generic placeholder image" width="140" height="140">
+            <h2>Freelance PCB Designer</h2>
+            <p>
+            • Designed custom PCBs for embedded and IoT applications<br>
+            • Converted functional requirements into schematics and layouts<br>
+            • Focus on manufacturability, documentation, and design best practices
+            </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            
+            <div style="
+     width: 140px;
+     height: 140px;
+     border-radius: 50%;
+     background-color: #ffffff;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     overflow: hidden;
+     margin: auto;
+">
+  <img src="wrlxv81l.png"
+       alt="Spacetug Logo"
+       style="
+         max-width: 80%;
+         max-height: 80%;
+         object-fit: contain;
+         display: block;
+       ">
+</div>
+
+            <h2>Spacetug</h2>
+            <p>
+            Project Trainee – Hardware & Firmware<br>
+            • PCB design and fabrication<br>
+            • Firmware development for embedded systems<br>
+            • Hardware–software integration in early-stage prototypes
+            </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+
+
+        <!-- START THE FEATURETTES -->
 
     <section id="projects">
-        <h2>Projects</h2>
-        <div class="projects" style="height: fit-content;">
-            <div class="project">
-                <img src="project-1-pcb.png" alt="Project 1" style="max-height: 300px;max-width: 300px; ">
-                <img src="project-1-prototype.png" alt="Project 1" style="max-height: 210px;max-width: 300px; "><br>
-                <h3>Emergency communication system for fishermen using loramesh technology</h3>
-                <p>Using STM32-based microcontrollers and LoRa module to establish a mesh network for long-range, low-power
-                    communication. Incorporate GPS for navigation assistance and real-time weather alerts, Developing a PCB to improve the compactness and reliability in hard weather conditions</p><br>
-                <p>Projects involed developing new and modifying existing libraries to interface with lora, lcd and user interface </p>
-            </div>
-            <div class="project">
-                <img src="project-2-pcb.png" alt="Project 2" style="max-height: 200px;max-width: 300px; ">
-                <img src="project-2-prototype.png" alt="Project 2" style="max-height: 200px;max-width: 300px; "><br>
-                <img src="project-2-pcb-routing.png" alt="project 2" style="max-height: 300px; max-width: 300px;">
-                <h3>PCB for SIH 2024</h3>
-                <p>developed a PCB for Smart India Hackathon 2024, it is a 2 layer PCB, this pcb was used a plug in device to monitor scientific project exhibits </p>
-            </div>
-            <div class="project">
-                <img src="project-3-pcb.png" alt="Project 2" style="max-height: 200px;max-width: 300px; ">
-                <img src="project-3-prototype.png" alt="Project 2" style="max-height: 200px;max-width: 300px; "><br>
-                <h3>Revolutionizing Fleet Management Using Customized Telematic Control Unit</h3>
-                <p>This proDeveloped advanced TCU and VIM to capture vehicle data without factory telemetry ports Using various sensors to collect extensive vehicle metrics such as engine performance, payload, fuel efficiency, location, and diagnostics. Developed an intuitive dashboard for real-time monitoring, AI-driven insights, and detailed reporting.</p>
-            </div>
-        </div>
+
+        <hr class="featurette-divider">
+
+        <h2 id="projects" style="text-align: center; margin-top: 40px; color: #000;">Projects</h2>
+        <p></p>
+
+    <!-- Project 1 -->
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">
+          AI at the Edge for Emergency Communication over Satellite Links
+        </h2>
+        <p class="lead">
+          Research-oriented project in collaboration with NXP Semiconductors at TU Hamburg.
+          Designed an AI-assisted emergency communication system on the i.MX95 platform to
+          enable meaningful and context-aware communication over satellite links with minimal
+          data rates. Implemented Speech-to-Text (STT) and Text-to-Speech (TTS) directly on the
+          edge device and utilized OpenAirInterface for device-to-device communication.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" src="nxp board.jpg" alt="AI Edge Communication">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Project 2 -->
+    <div class="row featurette">
+      <div class="col-md-7 order-md-2">
+        <h2 class="featurette-heading">
+          Enhancing Maritime Safety Using LoRaWAN
+        </h2>
+        <p class="lead">
+          Developed a low-power emergency communication system using STM32 microcontrollers
+          and LoRaWAN for long-range maritime applications. Implemented GPS-based navigation
+          support and real-time weather alerts. Designed a custom PCB to improve reliability
+          and compactness under harsh environmental conditions and developed a LoRa gateway
+          for external network connectivity.
+        </p>
+      </div>
+      <div class="col-md-5 order-md-1">
+        <img class="featurette-image img-fluid mx-auto" src="lora-2.jpeg" alt="LoRaWAN Maritime Safety">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
+    <!-- Project 3 -->
+    <div class="row featurette">
+      <div class="col-md-7">
+        <h2 class="featurette-heading">
+          Customized Telematic Control Unit for Fleet Management
+        </h2>
+        <p class="lead">
+          Designed a custom Telematic Control Unit (TCU) and Vehicle Interface Module (VIM)
+          to capture vehicle data without relying on factory telemetry ports. Integrated
+          multiple sensors to collect engine performance, payload, fuel efficiency, location,
+          and diagnostic data. Developed firmware and a real-time monitoring dashboard with
+          AI-driven insights and reporting capabilities.
+        </p>
+      </div>
+      <div class="col-md-5">
+        <img class="featurette-image img-fluid mx-auto" src="project-2-pcb.png" alt="Telematics Control Unit">
+      </div>
+    </div>
+
+    <hr class="featurette-divider">
+
     </section>
 
-    <section id="resume">
-        <h2>Resume</h2>
-        <p><a href="Parvesh_s_Resume.pdf" target="_blank">Download my resume</a></p>
-    </section>
+        <!-- /END THE FEATURETTES -->
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <form class="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
-            <button type="submit">Send</button>
-        </form>
-    </section>
+      </div><!-- /.container -->
 
-    <footer>
-        <p>&copy; 2024 Parvesh R's Portfolio</p>
-    </footer>
-</body>
+
+      <!-- FOOTER -->
+      <footer class="container">
+        <p class="float-right"><a href="#">Back to top</a></p>
+        <p>&copy; 2026 Parvesh R. &middot; </p>
+      </footer>
+    </main>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <script src="popper.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <!-- <script src="../../../../assets/js/vendor/holder.min.js"></script> -->
+  </body>
 </html>
