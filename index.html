@@ -696,7 +696,7 @@
   /* ════════════════════════════════════
      ENGINE
   ════════════════════════════════════ */
-  let lang = localStorage.getItem('lang') || 'en';
+  let lang = localStorage.getItem('lang') || 'de';
 
   function tr(key) {
     return (T[lang] && T[lang][key] !== undefined) ? T[lang][key] : (T.en[key] || key);
