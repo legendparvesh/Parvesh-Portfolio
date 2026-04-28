@@ -1,280 +1,755 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Parvesh R's Portfolio</title>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parvesh R — Hardware Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@400;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:          #050a0e;
+      --bg2:         #0a1520;
+      --bg3:         #0f1f2e;
+      --green:       #00ff88;
+      --green-dim:   #00cc6a;
+      --green-muted: #007a3f;
+      --amber:       #ffb300;
+      --cyan:        #00d4ff;
+      --text:        #cde8ff;
+      --text-muted:  #6a8fa8;
+      --border:      rgba(0,255,136,0.15);
+      --border2:     rgba(0,212,255,0.12);
+      --mono:        'Share Tech Mono', monospace;
+      --display:     'Syne', sans-serif;
+      --serif:       'DM Serif Display', serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: var(--display); overflow-x: hidden; }
 
-    <!-- Bootstrap core CSS -->
-    <link href="bootstrap.min.css" rel="stylesheet">
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--green-muted); border-radius: 2px; }
 
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
-  </head>
-  <body>
+    /* PCB GRID */
+    .pcb-bg {
+      position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background-image:
+        linear-gradient(rgba(0,255,136,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,255,136,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .pcb-bg::after {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,0.06) 0%, transparent 70%),
+                  radial-gradient(ellipse 50% 40% at 85% 80%, rgba(0,255,136,0.05) 0%, transparent 60%);
+    }
 
-    <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="#">Portfolio</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#experience">Experience</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#projects">Projects</a>
-            </li>
-          </ul>
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px; gap: 24px;
+      background: rgba(5,10,14,0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--green); letter-spacing: 0.1em; flex-shrink: 0; }
+    .nav-logo span { color: var(--text-muted); }
+    .nav-links { display: flex; gap: 32px; list-style: none; flex: 1; justify-content: center; }
+    .nav-links a {
+      font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+      text-decoration: none; letter-spacing: 0.15em; text-transform: uppercase;
+      transition: color 0.2s; position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--green); transform: scaleX(0); transition: transform 0.25s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    /* LANGUAGE SWITCHER */
+    .lang-switcher { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+    .lang-btn {
+      display: flex; align-items: center; gap: 6px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.12em; padding: 5px 12px; cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 6px) 0, 100% 6px, 100% 100%, 6px 100%, 0 calc(100% - 6px));
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+    }
+    .lang-btn:hover, .lang-btn.active {
+      border-color: var(--green); color: var(--green); background: rgba(0,255,136,0.06);
+    }
+    .lang-flag { font-size: 13px; }
+    .lang-sep { font-family: var(--mono); font-size: 11px; color: rgba(0,255,136,0.2); }
+
+    /* HERO */
+    #hero {
+      min-height: 100vh; display: flex; align-items: center;
+      padding: 120px 48px 80px; position: relative; z-index: 1;
+    }
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    .hero-tag {
+      font-family: var(--mono); font-size: 11px; color: var(--green);
+      letter-spacing: 0.25em; text-transform: uppercase; margin-bottom: 20px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-tag::before { content: ''; display: inline-block; width: 32px; height: 1px; background: var(--green); }
+    h1.name { font-family: var(--serif); font-size: clamp(52px, 7vw, 88px); line-height: 1; color: #fff; margin-bottom: 12px; letter-spacing: -0.02em; }
+    h1.name em { font-style: italic; color: var(--green); }
+    .hero-role { font-family: var(--mono); font-size: 13px; color: var(--cyan); letter-spacing: 0.08em; margin-bottom: 24px; }
+    .hero-bio { font-size: 16px; line-height: 1.75; color: var(--text-muted); max-width: 480px; margin-bottom: 40px; }
+    .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary-g {
+      display: inline-flex; align-items: center; gap: 10px; padding: 13px 28px;
+      background: var(--green); color: #050a0e; font-family: var(--mono); font-size: 12px;
+      font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
+      border: none; cursor: pointer;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary-g:hover { background: var(--cyan); transform: translateY(-2px); }
+    .btn-outline-g {
+      display: inline-flex; align-items: center; gap: 10px; padding: 13px 28px;
+      background: transparent; color: var(--green); font-family: var(--mono); font-size: 12px;
+      letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none; border: 1px solid var(--green);
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline-g:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+    /* OSC CARD */
+    .hero-visual { position: relative; display: flex; justify-content: center; align-items: center; }
+    .osc-card {
+      width: 100%; max-width: 460px; background: var(--bg2);
+      border: 1px solid var(--border); border-radius: 4px; overflow: hidden;
+      box-shadow: 0 0 60px rgba(0,255,136,0.08), 0 0 120px rgba(0,212,255,0.04);
+    }
+    .osc-header {
+      background: var(--bg3); padding: 10px 16px;
+      display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border);
+    }
+    .osc-dot { width: 8px; height: 8px; border-radius: 50%; }
+    .osc-dot.r { background: #ff5f57; } .osc-dot.y { background: #febc2e; } .osc-dot.g { background: #28c840; }
+    .osc-title { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-left: 8px; }
+    .osc-screen { padding: 20px; position: relative; height: 220px; }
+    .osc-grid-lines {
+      position: absolute; inset: 20px;
+      background-image: linear-gradient(rgba(0,255,136,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,136,0.07) 1px, transparent 1px);
+      background-size: 44px 44px; border: 1px solid rgba(0,255,136,0.1);
+    }
+    .osc-wave { position: absolute; inset: 20px; overflow: visible; }
+    .osc-wave path {
+      fill: none; stroke: var(--green); stroke-width: 2;
+      filter: drop-shadow(0 0 6px var(--green));
+      stroke-dasharray: 1000; stroke-dashoffset: 1000;
+      animation: draw-wave 2.5s ease forwards 0.5s;
+    }
+    @keyframes draw-wave { to { stroke-dashoffset: 0; } }
+    .osc-wave path.wave2 {
+      stroke: var(--cyan); opacity: 0.5;
+      stroke-dasharray: 1000; stroke-dashoffset: 1000;
+      animation: draw-wave 2.5s ease forwards 0.8s;
+    }
+    .osc-stats {
+      padding: 16px 20px; display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 12px; border-top: 1px solid var(--border);
+    }
+    .osc-stat-label { font-family: var(--mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 4px; }
+    .osc-stat-val { font-family: var(--mono); font-size: 18px; color: var(--green); }
+    .osc-stat-val.cyan { color: var(--cyan); }
+    .skills-chips { padding: 16px 20px; display: flex; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--border); }
+    .chip { font-family: var(--mono); font-size: 10px; padding: 4px 10px; border: 1px solid; border-radius: 2px; letter-spacing: 0.08em; }
+    .chip.g { border-color: var(--green-muted); color: var(--green); background: rgba(0,255,136,0.05); }
+    .chip.c { border-color: rgba(0,212,255,0.3); color: var(--cyan); background: rgba(0,212,255,0.05); }
+    .chip.a { border-color: rgba(255,179,0,0.3); color: var(--amber); background: rgba(255,179,0,0.05); }
+
+    /* SECTIONS */
+    section { position: relative; z-index: 1; padding: 100px 48px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono); font-size: 11px; color: var(--green);
+      letter-spacing: 0.3em; text-transform: uppercase; margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    h2.section-title { font-family: var(--serif); font-size: clamp(36px, 4vw, 52px); color: #fff; margin-bottom: 56px; line-height: 1.1; }
+    h2.section-title em { color: var(--green); font-style: italic; }
+
+    /* EXPERIENCE */
+    #experience { background: var(--bg2); }
+    .exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .exp-card {
+      background: var(--bg); border: 1px solid var(--border2); padding: 32px 28px;
+      position: relative; transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s; overflow: hidden;
+    }
+    .exp-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--cyan));
+      transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+    }
+    .exp-card:hover { border-color: rgba(0,255,136,0.3); transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.4); }
+    .exp-card:hover::before { transform: scaleX(1); }
+    .exp-icon { width: 48px; height: 48px; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; margin-bottom: 20px; font-size: 22px; }
+    .exp-company { font-family: var(--mono); font-size: 10px; color: var(--green); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 6px; }
+    .exp-role { font-family: var(--display); font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.3; }
+    .exp-points { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .exp-points li { font-family: var(--mono); font-size: 12px; color: var(--text-muted); line-height: 1.6; padding-left: 16px; position: relative; }
+    .exp-points li::before { content: '\203A'; position: absolute; left: 0; color: var(--green); }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border2); padding: 36px 32px;
+      position: relative; overflow: hidden; transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .project-card.featured {
+      grid-column: 1 / -1;
+      border-color: rgba(0,255,136,0.2);
+      background: linear-gradient(135deg, var(--bg2) 0%, rgba(0,255,136,0.03) 100%);
+    }
+    .project-card:hover { border-color: rgba(0,212,255,0.3); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
+    .project-num { font-family: var(--mono); font-size: 64px; font-weight: 700; color: rgba(0,255,136,0.08); line-height: 1; margin-bottom: 16px; user-select: none; }
+    .project-tag { font-family: var(--mono); font-size: 10px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 12px; }
+    h3.project-title { font-family: var(--display); font-size: clamp(20px, 2.5vw, 26px); font-weight: 700; color: #fff; margin-bottom: 16px; line-height: 1.2; }
+    .project-desc { font-size: 14px; line-height: 1.75; color: var(--text-muted); margin-bottom: 24px; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+    .ptag { font-family: var(--mono); font-size: 10px; padding: 3px 10px; background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.2); color: var(--cyan); border-radius: 2px; }
+
+    /* SKILLS */
+    #skills { background: var(--bg); }
+    .skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    .skill-group { background: var(--bg2); border: 1px solid var(--border); padding: 28px 24px; transition: border-color 0.3s; }
+    .skill-group:hover { border-color: rgba(0,255,136,0.3); }
+    .skill-group-title { font-family: var(--mono); font-size: 11px; color: var(--cyan); letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+    .skill-item { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+    .skill-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); flex-shrink: 0; box-shadow: 0 0 6px var(--green); }
+    .skill-name { font-family: var(--mono); font-size: 12px; color: var(--text); }
+
+    /* CONTACT */
+    #contact { background: var(--bg2); border-top: 1px solid var(--border); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    .contact-blurb { font-size: 15px; line-height: 1.8; color: var(--text-muted); margin-bottom: 36px; }
+    .contact-links { display: flex; flex-direction: column; gap: 16px; }
+    .contact-link {
+      display: flex; align-items: center; gap: 16px; text-decoration: none;
+      padding: 14px 20px; border: 1px solid var(--border);
+      transition: border-color 0.25s, background 0.25s; background: var(--bg);
+    }
+    .contact-link:hover { border-color: var(--green); background: rgba(0,255,136,0.04); }
+    .contact-link-icon { font-size: 18px; }
+    .contact-link-text { font-family: var(--mono); font-size: 12px; color: var(--text); letter-spacing: 0.08em; }
+    .contact-link-sub { font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+    .contact-link-arrow { margin-left: auto; font-family: var(--mono); font-size: 14px; color: var(--green); opacity: 0; transform: translateX(-8px); transition: opacity 0.25s, transform 0.25s; }
+    .contact-link:hover .contact-link-arrow { opacity: 1; transform: translateX(0); }
+
+    /* TERMINAL */
+    .terminal { background: var(--bg); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; font-family: var(--mono); }
+    .terminal-header { background: var(--bg3); padding: 10px 16px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid var(--border); }
+    .terminal-header .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .terminal-body { padding: 24px; }
+    .t-line { font-size: 13px; margin-bottom: 10px; line-height: 1.6; }
+    .t-prompt { color: var(--green); }
+    .t-cmd { color: var(--text); }
+    .t-out { color: var(--text-muted); padding-left: 16px; }
+    .t-out.hi { color: var(--cyan); }
+    .cursor { display: inline-block; width: 8px; height: 14px; background: var(--green); vertical-align: middle; animation: blink 1s step-end infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+
+    footer { text-align: center; padding: 32px 48px; font-family: var(--mono); font-size: 11px; color: var(--text-muted); border-top: 1px solid var(--border); background: var(--bg); position: relative; z-index: 1; letter-spacing: 0.1em; }
+    footer span { color: var(--green); }
+
+    /* LANG TRANSITION */
+    .lang-fade { transition: opacity 0.15s ease; }
+    body.lang-switching .lang-fade { opacity: 0; }
+
+    /* FADE-UP */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      nav { padding: 14px 20px; gap: 12px; }
+      .nav-links { gap: 16px; }
+      #hero { padding: 100px 24px 60px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      section { padding: 72px 24px; }
+      .exp-grid { grid-template-columns: 1fr; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .project-card.featured { grid-column: 1; }
+      .skills-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-inner { grid-template-columns: 1fr; gap: 40px; }
+    }
+    @media (max-width: 680px) {
+      .nav-links { display: none; }
+      h1.name { font-size: 44px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .lang-btn .lang-text { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="pcb-bg"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo"><span>// </span>PARVESH<span>.R</span></div>
+    <ul class="nav-links">
+      <li><a href="#hero"       data-i18n="nav.home">Home</a></li>
+      <li><a href="#experience" data-i18n="nav.experience">Experience</a></li>
+      <li><a href="#projects"   data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#skills"     data-i18n="nav.skills">Skills</a></li>
+      <li><a href="#contact"    data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')" title="English">
+        <span class="lang-flag">🇬🇧</span><span class="lang-text">EN</span>
+      </button>
+      <span class="lang-sep">|</span>
+      <button class="lang-btn" id="btn-de" onclick="setLang('de')" title="Deutsch">
+        <span class="lang-flag">🇩🇪</span><span class="lang-text">DE</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-tag lang-fade" data-i18n="hero.tag"></div>
+        <h1 class="name">Parvesh<br><em>Ramesh</em></h1>
+        <div class="hero-role lang-fade" data-i18n="hero.role"></div>
+        <p class="hero-bio lang-fade" data-i18n="hero.bio"></p>
+        <div class="hero-cta">
+          <a href="#projects" class="btn-primary-g lang-fade" data-i18n="hero.cta1"></a>
+          <a href="https://www.linkedin.com/in/parveshr/" target="_blank" class="btn-outline-g">LinkedIn &#x2197;</a>
         </div>
-      </nav>
-    </header>
-
-    <main role="main">
-
-      <div id="myCarousel" class="carousel slide" data-ride="carousel">
-        <ol class="carousel-indicators">
-          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-          <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-        </ol>
-        <div class="carousel-inner">
-          <div class="carousel-item active" style="height: 70vh; background-color: #000;">
-            <img class="first-slide"
-     src="e-background.png"
-     alt="First slide"
-     style="
-       width: 100vw;
-       height: 100%;
-       object-fit: cover;
-       object-position: center;
-       display: block;
-       margin: 0 auto;
-     ">
-
-
-            <div class="container">
-              <div class="carousel-caption text-left">
-                <h1>Parvesh R</h1>
-                <p>M.Sc. Microelectronics & Microsystems @ TUHH | Embedded Systems | IoT | PCB Design</p>
-              </div>
+      </div>
+      <div class="hero-visual">
+        <div class="osc-card">
+          <div class="osc-header">
+            <div class="osc-dot r"></div><div class="osc-dot y"></div><div class="osc-dot g"></div>
+            <span class="osc-title">signal_profile.sys &#8212; LIVE</span>
+          </div>
+          <div class="osc-screen">
+            <div class="osc-grid-lines"></div>
+            <svg class="osc-wave" viewBox="0 0 400 160" preserveAspectRatio="none">
+              <path d="M0,80 Q20,20 40,80 Q60,140 80,80 Q100,20 120,80 Q140,140 160,80 Q180,20 200,80 Q220,140 240,80 Q260,20 280,80 Q300,140 320,80 Q340,20 360,80 Q380,140 400,80"/>
+              <path class="wave2" d="M0,100 L30,100 L30,60 L70,60 L70,100 L110,100 L110,60 L150,60 L150,100 L190,100 L190,60 L230,60 L230,100 L270,100 L270,60 L310,60 L310,100 L350,100 L350,60 L400,60"/>
+            </svg>
+          </div>
+          <div class="osc-stats">
+            <div>
+              <div class="osc-stat-label lang-fade" data-i18n="osc.projects"></div>
+              <div class="osc-stat-val">03+</div>
+            </div>
+            <div>
+              <div class="osc-stat-label lang-fade" data-i18n="osc.experience"></div>
+              <div class="osc-stat-val cyan">3&times;</div>
             </div>
           </div>
-          <div class="carousel-item">
-            <img class="second-slide" src="home-4.png" alt="Second slide" style="max-width: 100%; height: auto; display: block;">
-            <div class="container">
-              <div class="carousel-caption">
-                <h1>About Me</h1>
-                <p style="text-align: justify;">
-I am a Master’s student in Microelectronics and Microsystems at the Technical University of Hamburg (TUHH) with a strong focus on embedded systems, IoT, and hardware development. I have hands-on experience in designing embedded devices, developing low-power communication systems, and creating reliable PCB designs for real-world applications.
-<br><br>
-My interests lie in research-oriented hardware development, sensor systems, and embedded product design. I enjoy working at the intersection of hardware and software and aim to contribute to technologies with measurable environmental and societal impact.
-</p>
-
-                <p><a class="btn btn-lg btn-primary" href="https://www.linkedin.com/in/parveshr/" role="button">Learn more</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <!-- <img class="third-slide" src="home-5.png" alt="Third slide"> -->
-            <div class="container">
-              <div class="carousel-caption text-left">
-                <h1>Skills</h1>
-                <ul>
-                  <li>Embedded C / C++</li>
-                  <li>STM32, Arduino</li>
-                  <li>PCB Design (Altium Designer, KiCad)</li>
-                  <li>LoRaWAN, UART, I2C, SPI</li>
-                  <li>Sensor Integration & Low-Power Systems</li>
-                  <li>Python (Flask, APIs)</li>
-                  <li>Tools: STM32CubeIDE, VS Code, Git</li>
-                </ul>
-
-                <!-- <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> -->
-              </div>
-            </div>
+          <div class="skills-chips">
+            <span class="chip g">STM32</span><span class="chip c">LoRaWAN</span>
+            <span class="chip g">Altium</span><span class="chip a">KiCad</span>
+            <span class="chip c">i.MX95</span><span class="chip g">Python</span>
+            <span class="chip a">LTspice</span><span class="chip c">AVR</span>
+            <span class="chip c">C</span><span class="chip g">GIT</span>
           </div>
         </div>
-        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-          <span class="sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-          <span class="carousel-control-next-icon" aria-hidden="true"></span>
-          <span class="sr-only">Next</span>
-        </a>
-      </div>
-
-
-      <!-- Marketing messaging and featurettes
-      ================================================== -->
-      <!-- Wrap the rest of the page in another container to center all the content. -->
-
-      <div class="container marketing">
-        <h2 id="experience" style="text-align: center; margin-top: 40px; color: #000;">Experience</h2>
-        <p></p>
-        
-        <!-- Three columns of text below the carousel -->
-        <div class="row">
-          <div class="col-lg-4 text-center">
-            <img class="rounded-circle"
-     src="https://img1.wsimg.com/isteam/ip/1de1d811-f2e9-4acf-af7b-3eb516c48e79/Terul%20Branding_V5-14-WordMark.png/:/rs=w:197,h:58,cg:true,m/cr=w:197,h:58/qt=q:95"
-     alt="Terul Logo" width="140" height="140" style="object-fit: contain; padding: 20px; background-color: #ffffff;">
-            <h2>Terul Electronics</h2>
-            <p>
-            Intern – Hardware Development<br>
-            • Developed and maintained master component libraries in Altium Designer<br>
-            • Supported schematic design and PCB development<br>
-            • Worked on Flyback controller design for SMPS applications
-            </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4 text-center">
-            <img class="rounded-circle" src="pcblogo.webp" alt="Generic placeholder image" width="140" height="140">
-            <h2>Freelance PCB Designer</h2>
-            <p>
-            • Designed custom PCBs for embedded and IoT applications<br>
-            • Converted functional requirements into schematics and layouts<br>
-            • Focus on manufacturability, documentation, and design best practices
-            </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-          <div class="col-lg-4">
-            
-            <div style="
-     width: 140px;
-     height: 140px;
-     border-radius: 50%;
-     background-color: #ffffff;
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     overflow: hidden;
-     margin: auto;
-">
-  <img src="wrlxv81l.png"
-       alt="Spacetug Logo"
-       style="
-         max-width: 80%;
-         max-height: 80%;
-         object-fit: contain;
-         display: block;
-       ">
-</div>
-
-            <h2>Spacetug</h2>
-            <p>
-            Project Trainee – Hardware & Firmware<br>
-            • PCB design and fabrication<br>
-            • Firmware development for embedded systems<br>
-            • Hardware–software integration in early-stage prototypes
-            </p>
-            <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p>
-          </div><!-- /.col-lg-4 -->
-        </div><!-- /.row -->
-
-
-        <!-- START THE FEATURETTES -->
-
-    <section id="projects">
-
-        <hr class="featurette-divider">
-
-        <h2 id="projects" style="text-align: center; margin-top: 40px; color: #000;">Projects</h2>
-        <p></p>
-
-    <!-- Project 1 -->
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">
-          AI at the Edge for Emergency Communication over Satellite Links
-        </h2>
-        <p class="lead">
-          Research-oriented project in collaboration with NXP Semiconductors at TU Hamburg.
-          Designed an AI-assisted emergency communication system on the i.MX95 platform to
-          enable meaningful and context-aware communication over satellite links with minimal
-          data rates. Implemented Speech-to-Text (STT) and Text-to-Speech (TTS) directly on the
-          edge device and utilized OpenAirInterface for device-to-device communication.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-fluid mx-auto" src="nxp board.jpg" alt="AI Edge Communication">
       </div>
     </div>
+  </section>
 
-    <hr class="featurette-divider">
-
-    <!-- Project 2 -->
-    <div class="row featurette">
-      <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">
-          Enhancing Maritime Safety Using LoRaWAN
-        </h2>
-        <p class="lead">
-          Developed a low-power emergency communication system using STM32 microcontrollers
-          and LoRaWAN for long-range maritime applications. Implemented GPS-based navigation
-          support and real-time weather alerts. Designed a custom PCB to improve reliability
-          and compactness under harsh environmental conditions and developed a LoRa gateway
-          for external network connectivity.
-        </p>
-      </div>
-      <div class="col-md-5 order-md-1">
-        <img class="featurette-image img-fluid mx-auto" src="lora-2.jpeg" alt="LoRaWAN Maritime Safety">
-      </div>
-    </div>
-
-    <hr class="featurette-divider">
-
-    <!-- Project 3 -->
-    <div class="row featurette">
-      <div class="col-md-7">
-        <h2 class="featurette-heading">
-          Customized Telematic Control Unit for Fleet Management
-        </h2>
-        <p class="lead">
-          Designed a custom Telematic Control Unit (TCU) and Vehicle Interface Module (VIM)
-          to capture vehicle data without relying on factory telemetry ports. Integrated
-          multiple sensors to collect engine performance, payload, fuel efficiency, location,
-          and diagnostic data. Developed firmware and a real-time monitoring dashboard with
-          AI-driven insights and reporting capabilities.
-        </p>
-      </div>
-      <div class="col-md-5">
-        <img class="featurette-image img-fluid mx-auto" src="project-2-pcb.png" alt="Telematics Control Unit">
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <div class="section-label lang-fade" data-i18n="exp.label"></div>
+      <h2 class="section-title lang-fade" data-i18n-html="exp.title"></h2>
+      <div class="exp-grid">
+        <div class="exp-card fade-up">
+          <div class="exp-icon">&#x1F50C;</div>
+          <div class="exp-company">Freelance</div>
+          <div class="exp-role lang-fade" data-i18n="exp.freelance.role"></div>
+          <ul class="exp-points lang-fade" data-i18n-list="exp.freelance.points"></ul>
+        </div>
+        <div class="exp-card fade-up" style="transition-delay:0.1s">
+          <div class="exp-icon">&#x26A1;</div>
+          <div class="exp-company">Terul Electronics</div>
+          <div class="exp-role lang-fade" data-i18n="exp.terul.role"></div>
+          <ul class="exp-points lang-fade" data-i18n-list="exp.terul.points"></ul>
+        </div>
+        <div class="exp-card fade-up" style="transition-delay:0.2s">
+          <div class="exp-icon">&#x1F6F0;</div>
+          <div class="exp-company">SpaceTug</div>
+          <div class="exp-role lang-fade" data-i18n="exp.spacetug.role"></div>
+          <ul class="exp-points lang-fade" data-i18n-list="exp.spacetug.points"></ul>
+        </div>
       </div>
     </div>
+  </section>
 
-    <hr class="featurette-divider">
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-label lang-fade" data-i18n="proj.label"></div>
+      <h2 class="section-title lang-fade" data-i18n-html="proj.title"></h2>
+      <div class="projects-grid">
+        <div class="project-card featured fade-up">
+          <div class="project-num">01</div>
+          <div class="project-tag lang-fade" data-i18n="proj.p1.tag"></div>
+          <h3 class="project-title lang-fade" data-i18n="proj.p1.title"></h3>
+          <p class="project-desc lang-fade" data-i18n="proj.p1.desc"></p>
+          <div class="project-tags">
+            <span class="ptag">i.MX95</span><span class="ptag">Edge AI</span>
+            <span class="ptag">STT / TTS</span><span class="ptag">OpenAirInterface</span><span class="ptag">Satellite</span>
+          </div>
+        </div>
+        <div class="project-card fade-up" style="transition-delay:0.1s">
+          <div class="project-num">02</div>
+          <div class="project-tag lang-fade" data-i18n="proj.p2.tag"></div>
+          <h3 class="project-title lang-fade" data-i18n="proj.p2.title"></h3>
+          <p class="project-desc lang-fade" data-i18n="proj.p2.desc"></p>
+          <div class="project-tags">
+            <span class="ptag">STM32</span><span class="ptag">LoRaWAN</span>
+            <span class="ptag">GPS</span><span class="ptag">PCB Development</span>
+          </div>
+        </div>
+        <div class="project-card fade-up" style="transition-delay:0.2s">
+          <div class="project-num">03</div>
+          <div class="project-tag lang-fade" data-i18n="proj.p3.tag"></div>
+          <h3 class="project-title lang-fade" data-i18n="proj.p3.title"></h3>
+          <p class="project-desc lang-fade" data-i18n="proj.p3.desc"></p>
+          <div class="project-tags">
+            <span class="ptag">CAN Bus</span><span class="ptag">Sensors</span>
+            <span class="ptag">PCB Design</span><span class="ptag">AI Dashboard</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    </section>
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-label lang-fade" data-i18n="skills.label"></div>
+      <h2 class="section-title lang-fade" data-i18n-html="skills.title"></h2>
+      <div class="skills-grid">
+        <div class="skill-group fade-up">
+          <div class="skill-group-title lang-fade" data-i18n="skills.g1.title"></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Embedded C / C++</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">STM32 (CubeIDE / HAL)</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Arduino</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name lang-fade" data-i18n="skills.g1.rtos"></span></div>
+        </div>
+        <div class="skill-group fade-up" style="transition-delay:0.1s">
+          <div class="skill-group-title lang-fade" data-i18n="skills.g2.title"></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Altium Designer</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">KiCad</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">LTspice</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name lang-fade" data-i18n="skills.g2.smps"></span></div>
+        </div>
+        <div class="skill-group fade-up" style="transition-delay:0.2s">
+          <div class="skill-group-title lang-fade" data-i18n="skills.g3.title"></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">LoRaWAN / LoRa</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">CAN Bus</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">I&#xB2;C / SPI / UART</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">GPS / NMEA</span></div>
+        </div>
+        <div class="skill-group fade-up" style="transition-delay:0.3s">
+          <div class="skill-group-title lang-fade" data-i18n="skills.g4.title"></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Python (Flask, APIs)</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">Git</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">VS Code / STM32CubeIDE</span></div>
+          <div class="skill-item"><div class="skill-dot"></div><span class="skill-name">OpenAirInterface</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- /END THE FEATURETTES -->
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-label lang-fade" data-i18n="contact.label"></div>
+      <h2 class="section-title lang-fade" data-i18n-html="contact.title"></h2>
+      <div class="contact-inner">
+        <div>
+          <p class="contact-blurb lang-fade" data-i18n="contact.blurb"></p>
+          <div class="contact-links">
+            <a href="https://www.linkedin.com/in/parveshr/" target="_blank" class="contact-link">
+              <span class="contact-link-icon">&#x1F517;</span>
+              <div>
+                <div class="contact-link-text">LinkedIn</div>
+                <div class="contact-link-sub">linkedin.com/in/parveshr</div>
+              </div>
+              <span class="contact-link-arrow">&#x2192;</span>
+            </a>
+            <a href="mailto:rameshparvesh@gmail.com" class="contact-link">
+              <span class="contact-link-icon">&#x2709;</span>
+              <div>
+                <div class="contact-link-text lang-fade" data-i18n="contact.email"></div>
+                <div class="contact-link-sub">rameshparvesh@gmail.com</div>
+              </div>
+              <span class="contact-link-arrow">&#x2192;</span>
+            </a>
+            <a href="#" class="contact-link">
+              <span class="contact-link-icon">&#x1F4C4;</span>
+              <div>
+                <div class="contact-link-text lang-fade" data-i18n="contact.cv"></div>
+                <div class="contact-link-sub lang-fade" data-i18n="contact.cvSub"></div>
+              </div>
+              <span class="contact-link-arrow">&#x2192;</span>
+            </a>
+          </div>
+        </div>
+        <div class="terminal">
+          <div class="terminal-header">
+            <div class="dot" style="background:#ff5f57"></div>
+            <div class="dot" style="background:#febc2e"></div>
+            <div class="dot" style="background:#28c840"></div>
+          </div>
+          <div class="terminal-body" id="terminal-body"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      </div><!-- /.container -->
+  <footer>
+    <span>// </span>Parvesh R &nbsp;&middot;&nbsp; Hamburg 2026 &nbsp;&middot;&nbsp;
+    <span class="lang-fade" data-i18n="footer.built"></span> &nbsp;<span>&#x2736;</span>
+  </footer>
 
+  <script>
+  /* ════════════════════════════════════
+     TRANSLATIONS
+  ════════════════════════════════════ */
+  const T = {
+    en: {
+      'nav.home':       'Home',
+      'nav.experience': 'Experience',
+      'nav.projects':   'Projects',
+      'nav.skills':     'Skills',
+      'nav.contact':    'Contact',
 
-      <!-- FOOTER -->
-      <footer class="container">
-        <p class="float-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2026 Parvesh R. &middot; </p>
-      </footer>
-    </main>
+      'hero.tag':  'M.Sc. Microelectronics & Microsystems \u2014 TUHH',
+      'hero.role': 'Hardware Engineer \u00a0/\u00a0 Embedded Systems \u00a0/\u00a0 IoT',
+      'hero.bio':  "I am a Master's student in Microelectronics and Microsystems at the Technical University of Hamburg (TUHH) with a strong focus on embedded systems, IoT, and hardware development. I have hands-on experience in designing embedded devices, developing low-power communication systems, and creating reliable PCB designs for real-world applications.",
+      'hero.cta1': 'View Projects \u2192',
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="popper.min.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <!-- <script src="../../../../assets/js/vendor/holder.min.js"></script> -->
-  </body>
+      'osc.projects':   'Projects',
+      'osc.experience': 'Experience',
+
+      'exp.label': '01 \u2014 Experience',
+      'exp.title': "Where I've <em>worked</em>",
+      'exp.freelance.role':    'PCB Designer & Electronics Engineer',
+      'exp.freelance.points':  [
+        'Designed custom PCBs for embedded and IoT applications',
+        'Converted functional requirements into schematics and layouts',
+        'Focus on DFM, documentation, and industry-standard best practices',
+        'Worked on electronic prototyping and circuit development',
+        'Modification of existing designs for improved performance'
+      ],
+      'exp.terul.role':   'Intern \u2014 Hardware Development',
+      'exp.terul.points': [
+        'Developed and maintained master component libraries in Altium Designer',
+        'Supported schematic design and PCB layout for production boards',
+        'Worked on Flyback controller design for SMPS applications using LTspice'
+      ],
+      'exp.spacetug.role':   'Project Trainee \u2014 Hardware & Firmware',
+      'exp.spacetug.points': [
+        'PCB design and fabrication for CAN bus driver board on space robotic arm',
+        'Firmware development for embedded control systems',
+        'Hardware\u2013software integration on early-stage space prototypes'
+      ],
+
+      'proj.label': '02 \u2014 Projects',
+      'proj.title': "What I've <em>built</em>",
+      'proj.p1.tag':   'NXP Semiconductors \u00d7 TUHH \u00b7 Research',
+      'proj.p1.title': 'AI at the Edge for Emergency Communication over Satellite Links',
+      'proj.p1.desc':  'Research-oriented collaboration with NXP Semiconductors at TU Hamburg. Designed an AI-assisted emergency communication system on the i.MX95 platform enabling context-aware communication over satellite links at minimal data rates. Implemented on-device STT/TTS and integrated OpenAirInterface for D2D comms.',
+      'proj.p2.tag':   'Maritime IoT \u00b7 STM32 \u00b7 LoRaWAN',
+      'proj.p2.title': 'Maritime Safety via LoRaWAN',
+      'proj.p2.desc':  'Low-power emergency communication system using STM32 and LoRaWAN for long-range maritime applications. GPS navigation, real-time weather alerts, custom PCB, and a LoRa gateway for external connectivity.',
+      'proj.p3.tag':   'Fleet Tech \u00b7 Telematics \u00b7 AI Dashboard',
+      'proj.p3.title': 'Telematic Control Unit for Fleet Management',
+      'proj.p3.desc':  'Custom TCU and VIM capturing vehicle data without factory ports. Multi-sensor integration for engine, fuel, location & diagnostics. Real-time monitoring dashboard with AI-driven insights.',
+
+      'skills.label':    '03 \u2014 Capabilities',
+      'skills.title':    'Technical <em>arsenal</em>',
+      'skills.g1.title': 'Embedded Systems',
+      'skills.g1.rtos':  'RTOS fundamentals',
+      'skills.g2.title': 'PCB & Hardware',
+      'skills.g2.smps':  'SMPS / Flyback Design',
+      'skills.g3.title': 'Protocols & Comms',
+      'skills.g4.title': 'Software & Tools',
+
+      'contact.label':  '04 \u2014 Contact',
+      'contact.title':  "Let's <em>connect</em>",
+      'contact.blurb':  'Open to research collaborations, working student positions, and full-time roles in hardware, embedded systems, or IoT. \u2014 happy to chat remotely too.',
+      'contact.email':  'Email',
+      'contact.cv':     'Resume / CV',
+      'contact.cvSub':  'Available on request',
+      'footer.built':   'Built with intent',
+
+      terminal: [
+        { cmd: true,  text: 'whoami' },
+        { out: true,  hi: true,  text: 'Parvesh R \u2014 Hardware Engineer' },
+        { cmd: true,  text: 'cat status.txt' },
+        { out: true,  text: '\ud83d\udccd Hamburg, Germany' },
+        { out: true,  text: '\ud83c\udf93 M.Sc. Microelectronics and Microsystems @ TUHH' },
+        { out: true,  text: '\ud83d\udd0b Open to opportunities' },
+        { cmd: true,  text: 'ls interests/' },
+        { out: true,  hi: true,  text: 'electronics-development/  embedded/  pcb-design/  iot/  edge-ai/' },
+        { cmd: true,  cursor: true, text: 'ping recruiter' }
+      ]
+    },
+
+    de: {
+      'nav.home':       'Startseite',
+      'nav.experience': 'Erfahrung',
+      'nav.projects':   'Projekte',
+      'nav.skills':     'F\u00e4higkeiten',
+      'nav.contact':    'Kontakt',
+
+      'hero.tag':  'M.Sc. Mikroelektronik & Mikrosysteme \u2014 TUHH',
+      'hero.role': 'Hardware-Ingenieur \u00a0/\u00a0 Eingebettete Systeme \u00a0/\u00a0 IoT',
+      'hero.bio':  'Ich bin Masterstudent im Studiengang Mikroelektronik und Mikrosysteme an der Technischen Universit\u00e4t Hamburg (TUHH) mit Schwerpunkt auf eingebetteten Systemen, IoT und Hardwareentwicklung. Ich verf\u00fcge \u00fcber praktische Erfahrung in der Entwicklung eingebetteter Ger\u00e4te, energieeffizienter Kommunikationssysteme und zuverl\u00e4ssiger Leiterplattendesigns f\u00fcr reale Anwendungen.',
+      'hero.cta1': 'Projekte ansehen \u2192',
+
+      'osc.projects':   'Projekte',
+      'osc.experience': 'Erfahrung',
+
+      'exp.label': '01 \u2014 Erfahrung',
+      'exp.title': 'Wo ich <em>gearbeitet</em> habe',
+      'exp.freelance.role':    'PCB-Designer & Elektronikingenieur',
+      'exp.freelance.points':  [
+        'Entwicklung individueller Leiterplatten f\u00fcr Embedded- und IoT-Anwendungen',
+        'Umsetzung funktionaler Anforderungen in Schaltpl\u00e4ne und Layouts',
+        'Fokus auf DFM, Dokumentation und Industriestandards',
+        'Elektronische Prototypenentwicklung und Schaltungsentwicklung',
+        'Optimierung bestehender Designs zur Leistungsverbesserung'
+      ],
+      'exp.terul.role':   'Praktikant \u2014 Hardwareentwicklung',
+      'exp.terul.points': [
+        'Entwicklung und Pflege von Master-Komponentenbibliotheken in Altium Designer',
+        'Unterst\u00fctzung bei Schaltplanentwurf und PCB-Layout f\u00fcr Produktionsplatinen',
+        'Mitarbeit am Flyback-Controller-Design f\u00fcr SMPS-Anwendungen mit LTspice'
+      ],
+      'exp.spacetug.role':   'Projektpraktikant \u2014 Hardware & Firmware',
+      'exp.spacetug.points': [
+        'PCB-Design und Fertigung einer CAN-Bus-Treiberplatine f\u00fcr einen Weltraumroboterarm',
+        'Firmware-Entwicklung f\u00fcr eingebettete Steuerungssysteme',
+        'Hardware\u2013Software-Integration in fr\u00fchen Prototypenphasen'
+      ],
+
+      'proj.label': '02 \u2014 Projekte',
+      'proj.title': 'Was ich <em>entwickelt</em> habe',
+      'proj.p1.tag':   'NXP Semiconductors \u00d7 TUHH \u00b7 Forschung',
+      'proj.p1.title': 'KI am Edge f\u00fcr Notfallkommunikation \u00fcber Satellitenstrecken',
+      'proj.p1.desc':  'Forschungsorientierte Zusammenarbeit mit NXP Semiconductors an der TU Hamburg. Entwicklung eines KI-gest\u00fctzten Notfallkommunikationssystems auf der i.MX95-Plattform f\u00fcr kontextbewusste Kommunikation \u00fcber Satellitenstrecken bei minimalen Datenraten. On-Device-Implementierung von STT/TTS und Integration von OpenAirInterface f\u00fcr D2D-Kommunikation.',
+      'proj.p2.tag':   'Maritime IoT \u00b7 STM32 \u00b7 LoRaWAN',
+      'proj.p2.title': 'Maritime Sicherheit via LoRaWAN',
+      'proj.p2.desc':  'Energieeffizientes Notfallkommunikationssystem auf Basis von STM32 und LoRaWAN f\u00fcr maritime Langstreckenanwendungen. GPS-Navigation, Echtzeit-Wetterwarnungen, individuelles PCB-Design und ein LoRa-Gateway f\u00fcr externe Netzwerkanbindung.',
+      'proj.p3.tag':   'Flottenmanagement \u00b7 Telematik \u00b7 KI-Dashboard',
+      'proj.p3.title': 'Telematiksteuerger\u00e4t f\u00fcr das Flottenmanagement',
+      'proj.p3.desc':  'Individuelles TCU und VIM zur Erfassung von Fahrzeugdaten ohne Werkstelematikports. Mehrsensoren-Integration f\u00fcr Motor, Kraftstoff, Standort und Diagnose. Echtzeit-Monitoring-Dashboard mit KI-gest\u00fctzten Auswertungen.',
+
+      'skills.label':    '03 \u2014 Kompetenzen',
+      'skills.title':    'Technisches <em>Arsenal</em>',
+      'skills.g1.title': 'Eingebettete Systeme',
+      'skills.g1.rtos':  'RTOS-Grundlagen',
+      'skills.g2.title': 'PCB & Hardware',
+      'skills.g2.smps':  'SMPS / Flyback-Design',
+      'skills.g3.title': 'Protokolle & Kommunikation',
+      'skills.g4.title': 'Software & Tools',
+
+      'contact.label':  '04 \u2014 Kontakt',
+      'contact.title':  'Lass uns <em>verbinden</em>',
+      'contact.blurb':  'Offen f\u00fcr Forschungskooperationen, Werkstudentenstellen und Vollzeitstellen im Bereich Hardware, Embedded Systems oder IoT. Wohnhaft in Hamburg \u2014 gerne auch remote.',
+      'contact.email':  'E-Mail',
+      'contact.cv':     'Lebenslauf / CV',
+      'contact.cvSub':  'Auf Anfrage erh\u00e4ltlich',
+      'footer.built':   'Mit Leidenschaft entwickelt',
+
+      terminal: [
+        { cmd: true,  text: 'whoami' },
+        { out: true,  hi: true,  text: 'Parvesh R \u2014 Hardware-Ingenieur' },
+        { cmd: true,  text: 'cat status.txt' },
+        { out: true,  text: '\ud83d\udccd Hamburg, Deutschland' },
+        { out: true,  text: '\ud83c\udf93 M.Sc. Mikroelektronik und Mikrosysteme @ TUHH' },
+        { out: true,  text: '\ud83d\udd0b Offen f\u00fcr Stellen' },
+        { cmd: true,  text: 'ls interessen/' },
+        { out: true,  hi: true,  text: 'elektronik-entwicklung/  embedded/  pcb-design/  iot/  edge-ki/' },
+        { cmd: true,  cursor: true, text: 'ping recruiter' }
+      ]
+    }
+  };
+
+  /* ════════════════════════════════════
+     ENGINE
+  ════════════════════════════════════ */
+  let lang = localStorage.getItem('lang') || 'en';
+
+  function tr(key) {
+    return (T[lang] && T[lang][key] !== undefined) ? T[lang][key] : (T.en[key] || key);
+  }
+
+  function renderTerminal() {
+    const lines = tr('terminal');
+    document.getElementById('terminal-body').innerHTML = lines.map(l => {
+      if (l.cmd) {
+        return `<div class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">${l.text}${l.cursor ? '<span class="cursor"></span>' : ''}</span></div>`;
+      }
+      return `<div class="t-line t-out${l.hi ? ' hi' : ''}">${l.text}</div>`;
+    }).join('');
+  }
+
+  function apply() {
+    // Plain text nodes
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      el.textContent = tr(el.getAttribute('data-i18n'));
+    });
+    // HTML nodes (allow <em>)
+    document.querySelectorAll('[data-i18n-html]').forEach(el => {
+      el.innerHTML = tr(el.getAttribute('data-i18n-html'));
+    });
+    // List nodes
+    document.querySelectorAll('[data-i18n-list]').forEach(el => {
+      const items = tr(el.getAttribute('data-i18n-list'));
+      if (Array.isArray(items)) el.innerHTML = items.map(i => `<li>${i}</li>`).join('');
+    });
+    renderTerminal();
+    document.documentElement.lang = lang;
+  }
+
+  function setLang(l) {
+    if (l === lang) return;
+    lang = l;
+    localStorage.setItem('lang', l);
+    document.body.classList.add('lang-switching');
+    setTimeout(() => { apply(); document.body.classList.remove('lang-switching'); }, 150);
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+    document.getElementById('btn-de').classList.toggle('active', l === 'de');
+  }
+
+  // Boot
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-de').classList.toggle('active', lang === 'de');
+  apply();
+
+  /* ════════════════════════════════════
+     SCROLL ANIMATIONS
+  ════════════════════════════════════ */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+  </script>
+</body>
 </html>
